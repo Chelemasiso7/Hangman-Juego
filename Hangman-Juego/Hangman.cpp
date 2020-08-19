@@ -221,10 +221,10 @@ void Hangman::sesionJuego(std::string palabra, std::string tip) {
 	std::string palabraUpper = palabra;											// Para que no importe si escriben minuscula o mayuscula
 	for (int i = 0; i < palabraUpper.length(); i++)
 		palabraUpper[i] = toupper(palabraUpper[i]);
-	//system("cls");
+	system("cls");
 	for (totContador = 0; oportRestantes != 0; totContador++) {
 		std::cout << tip << std::endl;
-		std::cout << "Intentos: " << maxOportunidades + 1 << std::endl;
+		std::cout << "Intentos: " << oportRestantes << std::endl;
 
 		char tempLetra; 
 		std::cout << "Ingrese una letra: ";

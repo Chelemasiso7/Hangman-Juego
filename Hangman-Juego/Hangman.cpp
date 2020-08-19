@@ -3,14 +3,15 @@
 // Constructor
 Hangman::Hangman()
 {
-    currentUser = "";       // Iniciar usuario actual como empty string
-    currentPuntacion = 0;   // Iniciar puntuacion en 0
+    currentUser = "";												// Iniciar usuario actual como empty string
+    currentPuntacion = 0;											// Iniciar puntuacion en 0
     // For loop para iniciar lista de jugadores con empty strings y puntaciones con 0
     for (int i = 0; i < totTopScores; i++)
     {
         topPlayers[i] = "";
         topScores[i] = 0;
     }
+	srand((unsigned)time(0));
 }   // Fin de constructor
 
 Hangman::~Hangman()
@@ -28,7 +29,7 @@ Hangman::~Hangman()
 int Hangman::menu()
 {
     // Funcion outputs el menu principal del juego y returns la opcion que escoga el usuario
-    int option;         // Esta la variable que vamos a return al final de la funcion
+    int option;														// Esta la variable que vamos a return al final de la funcion
 
     std::cout << "Bienvenido al Juego Ahorcado!\n" << std::endl;
     std::cout << "1) Jugar" << std::endl;
@@ -37,21 +38,21 @@ int Hangman::menu()
     std::cout << "4) Salir\n" << std::endl;
 
     std::cout << "Ingrese una Opcion: ";
-    std::cin >> option; // Salvar la decision del jugador en la variable opcion
+    std::cin >> option;												// Salvar la decision del jugador en la variable opcion
 
-    return option;      // Return la opcion que eligio el jugador
+    return option;													// Return la opcion que eligio el jugador
 }   // Fin de funcion menu()
 
 void Hangman::iniciarJuego()
 {
-    int opcionSel = 0;      // Keep track de la opcion que el usuario elige
-    while (opcionSel != 4)  // Mientras el jugador no eliga la opcion 4, de exit, seguimos jugando
+    int opcionSel = 0;												// Record de la opcion que el usuario elige
+    while (opcionSel != 4)											// Mientras el jugador no eliga la opcion 4, de exit, seguimos jugando
     {
-        opcionSel = menu(); // Mostramos menu principal y le pedimos input al user
+        opcionSel = menu();											// Mostramos menu principal y le pedimos input al user
 
         switch (opcionSel) {
 
-            // Si el jugador decide o escoge la opcion de Jugar.
+        // Si el jugador decide o escoge la opcion de Jugar.
         case 1:
             std::cout << "\tSeleccione la tematica del juego" << std::endl;
             std::cout << "1) Deportes" << std::endl;
@@ -110,16 +111,20 @@ void Hangman::iniciarJuego()
 }
 
 void Hangman::tematicaJuego(int opcionSel) {
+	int randNum = rand() % numeroPalabras;
+	std::cout << "Random Number: " << randNum << std::endl;
 	switch (opcionSel) {
 	// Deportes
     case 1:
-		sesionJuego(deportesPalabras[0], deportesTips[0]);
+		sesionJuego(deportesPalabras[randNum], deportesTips[randNum]);
 		break;
 	// Peliculas
 	case 2:
+		sesionJuego(peliculasPalabras[randNum], peliculasTips[randNum]);
 		break;
-	// Ciencias Sociales
+	// Cultura General
 	case 3:
+		sesionJuego(culturaGeneralPalabras[randNum], culturaGeneralTips[randNum]);
 		break;
 	default:
 		std::cerr << "Error! Opcion Equivocada porfavor elegir una opcion correcta" << std::endl;
@@ -216,7 +221,7 @@ void Hangman::sesionJuego(std::string palabra, std::string tip) {
 	std::string palabraUpper = palabra;											// Para que no importe si escriben minuscula o mayuscula
 	for (int i = 0; i < palabraUpper.length(); i++)
 		palabraUpper[i] = toupper(palabraUpper[i]);
-	system("cls");
+	//system("cls");
 	for (totContador = 0; oportRestantes != 0; totContador++) {
 		std::cout << tip << std::endl;
 		std::cout << "Intentos: " << maxOportunidades + 1 << std::endl;

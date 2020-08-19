@@ -13,7 +13,7 @@ const std::string deportesPalabras[numeroPalabras] = { "Italia", "Brazil", "Hond
 const std::string deportesTips[numeroPalabras] = { "Seleccion de futbol con 4 titulos del mundial de la FIFA, ultimo campeonato obtenido en el mundial 2006",
                                 "Seleccion de futbol con mas titulos del mundial de la FIFA", "Seleccion de Centro America que clasifico al mundial 1982,2010,2014",
                                 "Seleccion con mas titulos de Copa Oro","Cual es el Estadio mas Grande de Mexico", "Competicion de futbol mas famosa de Europa",
-                                "Competicion mas famosa de America", "Organizacion mundial del futbol", "Organizacion que regula el futbol de Honduras"
+                                "Competicion mas famosa de America", "Organizacion mundial del futbol", "Organizacion que regula el futbol de Honduras",
                                 "Equipo con mas copas de liga de Honduras"};
 
 // Banco de palabras para Peliculas

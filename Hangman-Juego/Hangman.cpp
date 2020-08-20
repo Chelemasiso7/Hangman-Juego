@@ -31,13 +31,13 @@ int Hangman::menu()
     // Funcion outputs el menu principal del juego y returns la opcion que escoga el usuario
     int option;														// Esta la variable que vamos a return al final de la funcion
 
-    std::cout << "\tBienvenido al Juego Ahorcado!\n" << std::endl;
-    std::cout << "\t1) Jugar" << std::endl;
-    std::cout << "\t2) Ver Reglas y Tipos de Juego" << std::endl;
-    std::cout << "\t3) Ver Puntajes de Jugadores" << std::endl;
-    std::cout << "\t4) Salir\n" << std::endl;
+    std::cout << "\n\t+-+-+-+Bienvenido al Juego Ahorcado!+-+-+-+\n\n\n" << std::endl;
+    std::cout << "1) Jugar\n" << std::endl;
+    std::cout << "2) Ver Reglas y Tipos de Juego\n" << std::endl;
+    std::cout << "3) Ver Puntajes de Jugadores\n" << std::endl;
+    std::cout << "4) Salir\n" << std::endl;
 
-    std::cout << "Ingrese una Opcion: ";
+    std::cout << "\t\tIngrese una Opcion: ";
     std::cin >> option;												// Salvar la decision del jugador en la variable opcion
 
     return option;													// Return la opcion que eligio el jugador
@@ -54,16 +54,16 @@ void Hangman::iniciarJuego()
 
         // Si el jugador decide o escoge la opcion de Jugar.
         case 1:
-            std::cout << "\tSeleccione la tematica del juego\n" << std::endl;
-            std::cout << "\t1) Deportes" << std::endl;
-            std::cout << "\t2) Peliculas" << std::endl;
-            std::cout << "\t3) Ciencias Sociales\n" << std::endl;
+            std::cout << "\n\t+-+-+-+Seleccione la tematica del juego+-+-+-+\n\n\n" << std::endl;
+            std::cout << "1) Deportes\n" << std::endl;
+            std::cout << "2) Peliculas\n" << std::endl;
+            std::cout << "3) Ciencias Sociales\n\n\n" << std::endl;
 
-            std::cout << "Ingrese una Opcion: ";
+            std::cout << "\t\tIngrese una Opcion: ";
             std::cin >> opcionSel;
 
             char comenzar;
-            std::cout << "Comenzar (S/N): ";
+            std::cout << "\n\n\t\tComenzar (S/N): \n";
             std::cin >> comenzar;
             comenzar = toupper(comenzar);
 
@@ -112,7 +112,7 @@ void Hangman::iniciarJuego()
 
 void Hangman::tematicaJuego(int opcionSel) {
 	int randNum = rand() % numeroPalabras;
-	randNum = 5;
+	//randNum = 5;
 	switch (opcionSel) {
 	// Deportes
     case 1:

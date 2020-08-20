@@ -4,7 +4,7 @@
 #include <time.h>                                                       // Para poder crear un numero aleatorio
 
 const int totTopScores = 10;
-const int maxOportunidades = 5;
+const int maxOportunidades = 6;
 const int numeroPalabras = 10;
 
 // Banco de Palabras para Deportes

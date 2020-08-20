@@ -31,11 +31,11 @@ int Hangman::menu()
     // Funcion outputs el menu principal del juego y returns la opcion que escoga el usuario
     int option;														// Esta la variable que vamos a return al final de la funcion
 
-    std::cout << "Bienvenido al Juego Ahorcado!\n" << std::endl;
-    std::cout << "1) Jugar" << std::endl;
-    std::cout << "2) Ver Reglas y Tipos de Juego" << std::endl;
-    std::cout << "3) Ver Puntajes de Jugadores" << std::endl;
-    std::cout << "4) Salir\n" << std::endl;
+    std::cout << "\tBienvenido al Juego Ahorcado!\n" << std::endl;
+    std::cout << "\t1) Jugar" << std::endl;
+    std::cout << "\t2) Ver Reglas y Tipos de Juego" << std::endl;
+    std::cout << "\t3) Ver Puntajes de Jugadores" << std::endl;
+    std::cout << "\t4) Salir\n" << std::endl;
 
     std::cout << "Ingrese una Opcion: ";
     std::cin >> option;												// Salvar la decision del jugador en la variable opcion
@@ -49,15 +49,15 @@ void Hangman::iniciarJuego()
     while (opcionSel != 4)											// Mientras el jugador no eliga la opcion 4, de exit, seguimos jugando
     {
         opcionSel = menu();											// Mostramos menu principal y le pedimos input al user
-
+		system("cls");
         switch (opcionSel) {
 
         // Si el jugador decide o escoge la opcion de Jugar.
         case 1:
-            std::cout << "\tSeleccione la tematica del juego" << std::endl;
-            std::cout << "1) Deportes" << std::endl;
-            std::cout << "2) Peliculas" << std::endl;
-            std::cout << "3) Ciencias Sociales" << std::endl;
+            std::cout << "\tSeleccione la tematica del juego\n" << std::endl;
+            std::cout << "\t1) Deportes" << std::endl;
+            std::cout << "\t2) Peliculas" << std::endl;
+            std::cout << "\t3) Ciencias Sociales\n" << std::endl;
 
             std::cout << "Ingrese una Opcion: ";
             std::cin >> opcionSel;
@@ -112,7 +112,7 @@ void Hangman::iniciarJuego()
 
 void Hangman::tematicaJuego(int opcionSel) {
 	int randNum = rand() % numeroPalabras;
-	std::cout << "Random Number: " << randNum << std::endl;
+	randNum = 5;
 	switch (opcionSel) {
 	// Deportes
     case 1:
@@ -208,11 +208,10 @@ void Hangman::figura(int oportunidades) {
 
 void Hangman::sesionJuego(std::string palabra, std::string tip) {
 	int contadorMalas = 0;														// Para llevar conteo de intentos incorrectos del jugador
-	int totContador = 0;														// Total de intentos buenos o malos del jugador
 	int oportRestantes = maxOportunidades;
 	std::string palabraLineas = "";
-	for (int i = 0; i < palabra.size(); i++) {
-		if (palabra[i] == ' ')
+	for (int i = 0; i < palabra.size(); i++) {									// Creando string con lineas del mismo tamaño de la palabra
+		if (palabra[i] == ' ')													// Si la letra es un espacio no la hacemos un guion bajo
 			palabraLineas += ' ';
 		else
 			palabraLineas += '_';
@@ -221,10 +220,23 @@ void Hangman::sesionJuego(std::string palabra, std::string tip) {
 	std::string palabraUpper = palabra;											// Para que no importe si escriben minuscula o mayuscula
 	for (int i = 0; i < palabraUpper.length(); i++)
 		palabraUpper[i] = toupper(palabraUpper[i]);
+
 	system("cls");
-	for (totContador = 0; oportRestantes != 0; totContador++) {
+
+	while (oportRestantes != 0) {												// Hasta que el jugador se quede sin oportunidades
+		system("cls");
 		std::cout << tip << std::endl;
-		std::cout << "Intentos: " << oportRestantes << std::endl;
+		std::cout << "\n\n\n\n\t"; 
+		for (int i = 0; i < palabraLineas.length(); i++)
+			std::cout << palabraLineas[i] << " ";
+
+		if (palabraUpper == palabraLineas) {									// Si el jugador ya adfivino la palabra 
+			std::cout << "\n\n\t\tGanaste Prrin" << std::endl;
+			break;
+		}		
+
+		std::cout << "\nIntentos: " << oportRestantes << std::endl;
+		figura(oportRestantes);
 
 		char tempLetra; 
 		std::cout << "Ingrese una letra: ";
@@ -237,18 +249,13 @@ void Hangman::sesionJuego(std::string palabra, std::string tip) {
 			// Si el jugador nos da una letra mala se comienza a formar la figura y el conteo de oportunidades disminuye
 			contadorMalas++;
 			oportRestantes = oportRestantes - 1;
-			figura(oportRestantes);
 		}
-		else {
-			std::cout << "la sacaste buena prrin" << std::endl;
-
+		else {																	// El jugador nos dio una letra correcta
+			for (int i = 0; i < palabraUpper.length(); i++) {					// Reemplazamos los guiones bajos por la letra correcta
+				if (palabraUpper[i] == tempLetra) {
+					palabraLineas[i] = tempLetra;
+				}
+			}
 		}
-
-
-
-	}
-	
-	
-
-	
+	}	
 }

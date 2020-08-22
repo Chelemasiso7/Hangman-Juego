@@ -45,7 +45,7 @@ private:
     int topScores[totTopScores];                                        // Lista de los 10 ultimos Puntajes
 
     // Metodos
-    int menu();                                                         // Menu del juego y para seleccionar la opcion que quiera el usuario
+    char menu();                                                         // Menu del juego y para seleccionar la opcion que quiera el usuario
     void tematicaJuego(int opcionSel);                                  // Funcion maneja que tematica eligio el jugador
     void figura(int oportunidades);                                     // Imprime el muneco de hangman dependiendo de las oportunidades
     void sortTopScores();                                               // Funcion para ordenar la lista de puntajes de cada jugador

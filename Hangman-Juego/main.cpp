@@ -2,10 +2,12 @@
 
 #include "Hangman.h"
 
-Hangman juego;
+
 
 
 int main()
 {
-	juego.iniciarJuego();
+	Hangman* juego = new Hangman();
+	juego->iniciarJuego();
+	delete juego;
 }

@@ -24,12 +24,15 @@ Hangman::~Hangman()
         topPlayers[i] = "";
         topScores[i] = 0;
     }
+	delete topPlayers;
+	delete topScores;
+
 }   // Fin del destructor
 
-int Hangman::menu()
+char Hangman::menu()
 {
     // Funcion outputs el menu principal del juego y returns la opcion que escoga el usuario
-    int option;														// Esta la variable que vamos a return al final de la funcion
+    char option;														// Esta la variable que vamos a return al final de la funcion
 
     std::cout << "\n\t+-+-+-+Bienvenido al Juego Ahorcado!+-+-+-+\n\n\n" << std::endl;
     std::cout << "1) Jugar\n" << std::endl;
@@ -46,67 +49,70 @@ int Hangman::menu()
 void Hangman::iniciarJuego()
 {
     int opcionSel = 0;												// Record de la opcion que el usuario elige
-    while (opcionSel != 4)											// Mientras el jugador no eliga la opcion 4, de exit, seguimos jugando
-    {
-        opcionSel = menu();											// Mostramos menu principal y le pedimos input al user
-		system("cls");
-        switch (opcionSel) {
+	while (true)													// Mientras el jugador no eliga la opcion 4, de exit, seguimos jugando
+	{
+		opcionSel = menu();											// Mostramos menu principal y le pedimos input al user
+		//system("cls");
+		if (opcionSel == '4') {
+			std::cout << "Saliendo del juego" << std::endl;
+			break;
+		}
+		else {
+			switch (opcionSel) {
 
-        // Si el jugador decide o escoge la opcion de Jugar.
-        case 1:
-            std::cout << "\n\t+-+-+-+Seleccione la tematica del juego+-+-+-+\n\n\n" << std::endl;
-            std::cout << "1) Deportes\n" << std::endl;
-            std::cout << "2) Peliculas\n" << std::endl;
-            std::cout << "3) Ciencias Sociales\n\n\n" << std::endl;
+				// Si el jugador decide o escoge la opcion de Jugar.
+			case '1':
+				std::cout << "\n\t+-+-+-+Seleccione la tematica del juego+-+-+-+\n\n\n" << std::endl;
+				std::cout << "1) Deportes\n" << std::endl;
+				std::cout << "2) Peliculas\n" << std::endl;
+				std::cout << "3) Ciencias Sociales\n\n\n" << std::endl;
 
-            std::cout << "\t\tIngrese una Opcion: ";
-            std::cin >> opcionSel;
+				std::cout << "\t\tIngrese una Opcion: ";
+				std::cin >> opcionSel;
 
-            char comenzar;
-            std::cout << "\n\n\t\tComenzar (S/N): \n";
-            std::cin >> comenzar;
-            comenzar = toupper(comenzar);
+				char comenzar;
+				std::cout << "\n\n\t\tComenzar (S/N): ";
+				std::cin >> comenzar;
+				comenzar = toupper(comenzar);
 
-            if (comenzar == 'S') {
-                tematicaJuego(opcionSel);
-            }
-            else
-                continue;
-
-            break;
-            
-		// El case 2 va a representar la opcion de ver Reglas y tipos de Juegos.
-        case 2:
-            std::cout << "\t\t\tReglas del Juego\n" << std::endl;
-            std::cout << "1) Maxima Cantidad de Errores son 6" << std::endl;
-            std::cout << "2) Temas: Deportes, Peliculas, Ciencias Sociales" << std::endl;
-            std::cout << "3) Cada Respuesta (Letra) Adivinada Correctamente tiene un valor de 10 Puntos" << std::endl;
-            std::cout << "4) No se permite ayuda de alguien mas" << std::endl;
-            std::cout << std::endl;
-
-            break;
-
-		// El case 3 representara la opcion de ver los puntajes de cada jugador.
-        case 3:
-			std::cout << "Puntuaciones mas Altas" << std::endl;
-			for (int i = 0; i < totTopScores; i++) {
-				int tempScore = topScores[i];
-				if (tempScore != 0) {
-					std::string tempUser = topPlayers[i];
-					std::cout << tempUser << ": " << tempScore << std::endl;
-
+				if (comenzar == 'S') {
+					tematicaJuego(opcionSel);
 				}
+				else
+					continue;
+
+				break;
+
+				// El case 2 va a representar la opcion de ver Reglas y tipos de Juegos.
+			case '2':
+				std::cout << "\t\t\tReglas del Juego\n" << std::endl;
+				std::cout << "1) Maxima Cantidad de Errores son 6" << std::endl;
+				std::cout << "2) Temas: Deportes, Peliculas, Ciencias Sociales" << std::endl;
+				std::cout << "3) Cada Respuesta (Letra) Adivinada Correctamente tiene un valor de 10 Puntos" << std::endl;
+				std::cout << "4) No se permite ayuda de alguien mas" << std::endl;
+				std::cout << std::endl;
+
+				break;
+
+				// El case 3 representara la opcion de ver los puntajes de cada jugador.
+			case '3':
+				std::cout << "Puntuaciones mas Altas" << std::endl;
+				for (int i = 0; i < totTopScores; i++) {
+					int tempScore = topScores[i];
+					if (tempScore != 0) {
+						std::string tempUser = topPlayers[i];
+						std::cout << tempUser << ": " << tempScore << std::endl;
+
+					}
+				}
+
+				break;
+
+
+			default:
+				std::cout << "Error Opcion Equivocada" << std::endl;
 			}
-
-            break;
-        
-		// El case 4 es la opcion de salir del juego, si no se selecciona el juego no acaba.
-        case 4:
-            break;
-
-        default:
-            std::cout << "Error Opcion Equivocada" << std::endl;
-        }
+		}
     }   // End of while-loop
 }
 

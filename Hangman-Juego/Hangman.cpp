@@ -96,13 +96,14 @@ void Hangman::iniciarJuego()
 
 				// El case 3 representara la opcion de ver los puntajes de cada jugador.
 			case '3':
-				std::cout << "Puntuaciones mas Altas" << std::endl;
+				std::cout << "Puntuaciones mas Altos" << std::endl;
 				for (int i = 0; i < totTopScores; i++) {
 					int tempScore = topScores[i];
-					if (tempScore != 0) {
-						std::string tempUser = topPlayers[i];
-						std::cout << tempUser << ": " << tempScore << std::endl;
-
+					if (tempScore == 0) 										// Si llegamos a un puntaje de 0 salimos del for-loop
+						break;
+					else			
+					{
+						std::cout << topPlayers[i] << ": " << tempScore << std::endl;
 					}
 				}
 
@@ -215,8 +216,9 @@ void Hangman::figura(int oportunidades) {
 void Hangman::sesionJuego(std::string palabra, std::string tip) {
 	int contadorMalas = 0;														// Para llevar conteo de intentos incorrectos del jugador
 	int oportRestantes = maxOportunidades;
+	int puntaje = 0;															// Para llevar el puntaje del jugador
 	std::string palabraLineas = "";
-	for (int i = 0; i < palabra.size(); i++) {									// Creando string con lineas del mismo tamaño de la palabra
+	for (int i = 0; i < palabra.size(); i++) {									// Creando string con lineas del mismo tamaï¿½o de la palabra
 		if (palabra[i] == ' ')													// Si la letra es un espacio no la hacemos un guion bajo
 			palabraLineas += ' ';
 		else
@@ -238,6 +240,13 @@ void Hangman::sesionJuego(std::string palabra, std::string tip) {
 
 		if (palabraUpper == palabraLineas) {									// Si el jugador ya adfivino la palabra 
 			std::cout << "\n\n\t\tGanaste Prrin" << std::endl;
+			puntaje += 100;														// Le damos 100 puntos por ver completado la palabra
+			
+			// Ahora le pedimos el nombre al usuario para revisar al salvarlo
+			std::string nombre;
+			std::cout << "Escribir tu nombre: ";
+			std::cin >> nombre;
+			agregarJugador(nombre, puntaje);
 			break;
 		}		
 
@@ -260,8 +269,50 @@ void Hangman::sesionJuego(std::string palabra, std::string tip) {
 			for (int i = 0; i < palabraUpper.length(); i++) {					// Reemplazamos los guiones bajos por la letra correcta
 				if (palabraUpper[i] == tempLetra) {
 					palabraLineas[i] = tempLetra;
+					puntaje += 10;												// Agregamos 10 puntos por cada letra correcta dentro de la palabra
 				}
 			}
 		}
 	}	
+}
+
+void Hangman::agregarJugador(std::string user, int puntaje)
+{
+	int puntajeMasBajo = topScores[totTopScores];								// Hagarramos el puntaje mas bajo del Top 10 actual
+	if (puntaje > puntajeMasBajo)												// Si el puntaje del usuario es mas alto que el utlimo del Top 10
+	{
+		// Vamos a remplazar el ultimo puntaje por el del usuario actual
+		topScores[totTopScores] = puntajeMasBajo;								// Insertamos el puntaje del usuario al final de la lista de top 10 puntajes
+		topPlayers[totTopScores] = user;										// Insertamos el nombre del usuario al final de la lista de top jugadores
+		sortTopScores();														// Llamamos a la funcion sortTopScores para hacer bubble sort con el nuevo puntaje
+	}
+	else																		// Else el jugador no tuvo un puntaje sufientemente alto para estar en el top 10
+	{
+		std::cout << "Tu puntaje no es lo suficiente para estar en el Top 10, trata un nuevo juego!" << std::endl;
+	}
+}
+
+void Hangman::sortTopScores()
+{
+	// Funcion hace un bubble sort para arreglar el order de la lista de top scores
+	int n = totTopScores;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n-i-1; j++)
+		{
+			if (topScores[j] > topScores[j+1])
+			{
+				// Hacemos swap en la lista de puntajes
+				int tempPuntaje = topScores[i];
+				topScores[j] = topScores[j+1];
+				topScores[j+1] = tempPuntaje;
+
+				// Hacemos swap en la lista de nombres/usarios
+				std::string tempNombre = topPlayers[i];
+				topPlayers[j] = topPlayers[j+1];
+				topPlayers[j+1] = tempNombre;
+			}
+		}
+	}
+
 }

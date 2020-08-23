@@ -3,8 +3,6 @@
 #include "Hangman.h"
 
 
-
-
 int main()
 {
 	Hangman* juego = new Hangman();

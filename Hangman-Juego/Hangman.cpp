@@ -15,21 +15,6 @@ Hangman::Hangman()
 	srand((unsigned)time(0));
 }   // Fin de constructor
 
-Hangman::~Hangman()
-{
-    // Destructor for Hangman object
-    currentUser = "";
-    currentPuntacion = 0;
-	
-	//For loop para remover string dentros de los arrays de los bancos de palabras y sus tips
-	for (int i = 0; numeroPalabras; i++){
-		deportesPalabras[i] = deportesTips[i] = "";
-		peliculasPalabras[i] = peliculasTips[i] = "";
-		culturaGeneralPalabras[i] = culturaGeneralTips[i] = "";
-	}
-
-}   // Fin del destructor
-
 char Hangman::menu()
 {
     // Funcion outputs el menu principal del juego y returns la opcion que escoga el usuario

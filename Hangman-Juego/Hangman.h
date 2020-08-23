@@ -65,7 +65,6 @@ private:
 
 public:
     Hangman();                                                          // Constructor
-    ~Hangman();                                                         // Destructor
 
     // Metodos
     void iniciarJuego();                                                // Iniciador de Juego

@@ -12,13 +12,6 @@ Hangman::Hangman()
         topPlayers[i] = "";
         topScores[i] = 0;
     }
-
-	//For loop para remover string dentros de los arrays de los bancos de palabras y sus tips
-	for (int i = 0; numeroPalabras; i++){
-		deportesPalabras[i] = deportesTips[i] = "";
-		peliculasPalabras[i] = peliculasTips[i] = "";
-		culturaGeneralPalabras[i] = culturaGeneralTips[i] = "";
-	}
 	srand((unsigned)time(0));
 }   // Fin de constructor
 
@@ -28,11 +21,12 @@ Hangman::~Hangman()
     currentUser = "";
     currentPuntacion = 0;
 	
-	// Borramos los arrays de los bancos de palabras
-	delete deportesPalabras, peliculasPalabras, culturaGeneralPalabras;
-
-	// Borramos los arrays de los tips
-	delete deportesTips, peliculasTips, culturaGeneralTips;
+	//For loop para remover string dentros de los arrays de los bancos de palabras y sus tips
+	for (int i = 0; numeroPalabras; i++){
+		deportesPalabras[i] = deportesTips[i] = "";
+		peliculasPalabras[i] = peliculasTips[i] = "";
+		culturaGeneralPalabras[i] = culturaGeneralTips[i] = "";
+	}
 
 }   // Fin del destructor
 
@@ -104,14 +98,14 @@ void Hangman::iniciarJuego()
 				// El case 3 representara la opcion de ver los puntajes de cada jugador.
 			case '3':
 				std::cout << "Puntuaciones mas Altos" << std::endl;
-				for (int i = 0; i < totTopScores; i++) {
+				for (int i = totTopScores; i > 0; i--) {
+					// Salvamos como variable el nombre y puntaje del elemento actual en el array
 					int tempScore = topScores[i];
-					if (tempScore == 0) 										// Si llegamos a un puntaje de 0 salimos del for-loop
-						std::cout << std::endl; 
-					else			
-					{
-						std::cout << topPlayers[i] << ": " << tempScore << std::endl;
-					}
+					std::string tempNombre = topPlayers[i];
+					if (tempScore != 0) 											// Si hay un puntaje dentro del elemento actual del array
+						std::cout << tempNombre << ": " << tempScore << std::endl;	// Imprimimos el nombre y puntaje de la persona
+					else															// Else no hay puntaje ni nombre en este index del array
+						continue;													// No imprimimos nada solamente avanzamos al siguiente index
 				}
 
 				break;
@@ -284,13 +278,13 @@ void Hangman::sesionJuego(std::string palabra, std::string tip) {
 }
 
 void Hangman::agregarJugador(std::string user, int puntaje) {
-	int puntajeMasBajo = topScores[totTopScores - 1];								// Hagarramos el puntaje mas bajo del Top 10 actual
+	int puntajeMasBajo = topScores[0];											// Hagarramos el puntaje mas bajo del Top 10 actual
 	if (puntaje > puntajeMasBajo)												// Si el puntaje del usuario es mas alto que el utlimo del Top 10
 	{
 		// Vamos a remplazar el ultimo puntaje por el del usuario actual
-		topScores[totTopScores] = puntajeMasBajo;								// Insertamos el puntaje del usuario al final de la lista de top 10 puntajes
-		topPlayers[totTopScores] = user;										// Insertamos el nombre del usuario al final de la lista de top jugadores
-		//sortTopScores();														// Llamamos a la funcion sortTopScores para hacer bubble sort con el nuevo puntaje
+		topScores[0] = puntaje;													// Insertamos el puntaje del usuario al final de la lista de top 10 puntajes
+		topPlayers[0] = user;													// Insertamos el nombre del usuario al final de la lista de top jugadores
+		sortTopScores();														// Llamamos a la funcion sortTopScores para hacer bubble sort con el nuevo puntaje
 	}
 	else																		// Else el jugador no tuvo un puntaje sufientemente alto para estar en el top 10
 	{

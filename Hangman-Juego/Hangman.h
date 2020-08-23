@@ -45,11 +45,12 @@ private:
     int topScores[totTopScores];                                        // Lista de los 10 ultimos Puntajes
 
     // Metodos
-    char menu();                                                         // Menu del juego y para seleccionar la opcion que quiera el usuario
+    char menu();                                                        // Menu del juego y para seleccionar la opcion que quiera el usuario
     void tematicaJuego(int opcionSel);                                  // Funcion maneja que tematica eligio el jugador
     void figura(int oportunidades);                                     // Imprime el muneco de hangman dependiendo de las oportunidades
     void sortTopScores();                                               // Funcion para ordenar la lista de puntajes de cada jugador
     void sesionJuego(std::string palabra,std::string tip);
+    void agregarJugador(std::string user, int puntaje);                 // Funcion chequea si el jugador tiene una puntuacion suficientemente alta para salvar en el top 10
 
 public:
     Hangman();                                                          // Constructor

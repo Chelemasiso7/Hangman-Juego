@@ -284,7 +284,7 @@ void Hangman::sesionJuego(std::string palabra, std::string tip) {
 }
 
 void Hangman::agregarJugador(std::string user, int puntaje) {
-	int puntajeMasBajo = topScores[totTopScores];								// Hagarramos el puntaje mas bajo del Top 10 actual
+	int puntajeMasBajo = topScores[totTopScores - 1];								// Hagarramos el puntaje mas bajo del Top 10 actual
 	if (puntaje > puntajeMasBajo)												// Si el puntaje del usuario es mas alto que el utlimo del Top 10
 	{
 		// Vamos a remplazar el ultimo puntaje por el del usuario actual
@@ -309,12 +309,12 @@ void Hangman::sortTopScores()
 			if (topScores[j] > topScores[j+1])
 			{
 				// Hacemos swap en la lista de puntajes
-				int tempPuntaje = topScores[i];
+				int tempPuntaje = topScores[j];
 				topScores[j] = topScores[j+1];
 				topScores[j+1] = tempPuntaje;
 
 				// Hacemos swap en la lista de nombres/usarios
-				std::string tempNombre = topPlayers[i];
+				std::string tempNombre = topPlayers[j];
 				topPlayers[j] = topPlayers[j+1];
 				topPlayers[j+1] = tempNombre;
 			}

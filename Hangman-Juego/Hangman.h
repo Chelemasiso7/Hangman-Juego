@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>                                                       // Para poder usar Strings
 #include <iostream>                                                     // Output y Inputs
 #include <stdlib.h>                                                     // Para poder limpiar la pantalla
@@ -7,9 +8,6 @@
 #define totTopScores 10
 #define maxOportunidades 6
 #define numeroPalabras 10
-
-// Banco de Palabras para Deportes
-const 
 
 class Hangman
 {

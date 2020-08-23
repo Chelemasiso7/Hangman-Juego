@@ -39,19 +39,8 @@ private:
                                 "Paiz mas extenso del Mundo", "Estado de U.S.A mas extenso", "Presidente de U.S.A", "Puerto maritimo ubicado en Trujillo",
                                 "Rio mas largo del mundo", "Quien es el autor de el Quijote", 
                                 "Cual es el tercer planeta del sistema solar" };
-    // // Bancos de palarbas
-    // std::string deportesPalabras        [numeroPalabras] = {};          // Banco de palabras para deportes
-    // std::string peliculasPalabras       [numeroPalabras] = {};          // Banco de palabras para peliculas
-    // std::string culturaGeneralPalabras  [numeroPalabras] = {};          // Banco de palabras para CulturaGeneralPalabras
-
-    // // Tips para palabras de bancos de palabras
-    // std::string deportesTips            [numeroPalabras] = {};          // Tips para palabras de deportes
-    // std::string peliculasTips           [numeroPalabras] = {};          // Tips para palabras de deportes
-    // std::string culturaGeneralTips      [numeroPalabras] = {};          // Tips para palabras en CulturaGeneralPalabras
     
     // Variables
-    std::string currentUser;                                            // Historial de los jugadores
-    int currentPuntacion;                                               // Historial de los puntajes de los jugadores
     std::string topPlayers[totTopScores];                               // Lista de los 10 ultimos jugaodres
     int topScores[totTopScores];                                        // Lista de los 10 ultimos Puntajes
 

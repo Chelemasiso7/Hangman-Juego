@@ -12,6 +12,13 @@ Hangman::Hangman()
         topPlayers[i] = "";
         topScores[i] = 0;
     }
+
+	//For loop para remover string dentros de los arrays de los bancos de palabras y sus tips
+	for (int i = 0; numeroPalabras; i++){
+		deportesPalabras[i] = deportesTips[i] = "";
+		peliculasPalabras[i] = peliculasTips[i] = "";
+		culturaGeneralPalabras[i] = culturaGeneralTips[i] = "";
+	}
 	srand((unsigned)time(0));
 }   // Fin de constructor
 

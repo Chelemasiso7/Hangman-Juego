@@ -3,6 +3,7 @@
 // Constructor
 Hangman::Hangman()
 {
+	// Ahora iniciamos los otros variables
     currentUser = "";												// Iniciar usuario actual como empty string
     currentPuntacion = 0;											// Iniciar puntuacion en 0
     // For loop para iniciar lista de jugadores con empty strings y puntaciones con 0
@@ -19,13 +20,12 @@ Hangman::~Hangman()
     // Destructor for Hangman object
     currentUser = "";
     currentPuntacion = 0;
-    for (int i = 0; totTopScores; i++)
-    {
-        topPlayers[i] = "";
-        topScores[i] = 0;
-    }
-	delete topPlayers;
-	delete topScores;
+	
+	// Borramos los arrays de los bancos de palabras
+	delete deportesPalabras, peliculasPalabras, culturaGeneralPalabras;
+
+	// Borramos los arrays de los tips
+	delete deportesTips, peliculasTips, culturaGeneralTips;
 
 }   // Fin del destructor
 

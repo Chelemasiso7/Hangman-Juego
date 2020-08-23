@@ -3,9 +3,9 @@
 #include <stdlib.h>                                                     // Para poder limpiar la pantalla
 #include <time.h>                                                       // Para poder crear un numero aleatorio
 
-const int totTopScores = 10;
-const int maxOportunidades = 6;
-const int numeroPalabras = 10;
+#define totTopScores  10
+#define maxOportunidades  6
+#define numeroPalabras  10
 
 // Banco de Palabras para Deportes
 const std::string deportesPalabras[numeroPalabras] = { "Italia", "Brazil", "Honduras", "Mexico", "Azteca", "Champions League", "Copa America", "FIFA", "FENAFUTH", "Olimpia" };
@@ -50,7 +50,8 @@ private:
     void figura(int oportunidades);                                     // Imprime el muneco de hangman dependiendo de las oportunidades
     void sortTopScores();                                               // Funcion para ordenar la lista de puntajes de cada jugador
     void sesionJuego(std::string palabra,std::string tip);
-    void agregarJugador(std::string user, int puntaje);                 // Funcion chequea si el jugador tiene una puntuacion suficientemente alta para salvar en el top 10
+    void agregarJugador(std::string user, int puntaje);
+    //void agregarJugador(std::string user, int puntaje);                 // Funcion chequea si el jugador tiene una puntuacion suficientemente alta para salvar en el top 10
 
 public:
     Hangman();                                                          // Constructor

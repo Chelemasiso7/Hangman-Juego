@@ -100,7 +100,7 @@ void Hangman::iniciarJuego()
 				for (int i = 0; i < totTopScores; i++) {
 					int tempScore = topScores[i];
 					if (tempScore == 0) 										// Si llegamos a un puntaje de 0 salimos del for-loop
-						break;
+						std::cout << std::endl; 
 					else			
 					{
 						std::cout << topPlayers[i] << ": " << tempScore << std::endl;
@@ -276,15 +276,14 @@ void Hangman::sesionJuego(std::string palabra, std::string tip) {
 	}	
 }
 
-void Hangman::agregarJugador(std::string user, int puntaje)
-{
+void Hangman::agregarJugador(std::string user, int puntaje) {
 	int puntajeMasBajo = topScores[totTopScores];								// Hagarramos el puntaje mas bajo del Top 10 actual
 	if (puntaje > puntajeMasBajo)												// Si el puntaje del usuario es mas alto que el utlimo del Top 10
 	{
 		// Vamos a remplazar el ultimo puntaje por el del usuario actual
 		topScores[totTopScores] = puntajeMasBajo;								// Insertamos el puntaje del usuario al final de la lista de top 10 puntajes
 		topPlayers[totTopScores] = user;										// Insertamos el nombre del usuario al final de la lista de top jugadores
-		sortTopScores();														// Llamamos a la funcion sortTopScores para hacer bubble sort con el nuevo puntaje
+		//sortTopScores();														// Llamamos a la funcion sortTopScores para hacer bubble sort con el nuevo puntaje
 	}
 	else																		// Else el jugador no tuvo un puntaje sufientemente alto para estar en el top 10
 	{
